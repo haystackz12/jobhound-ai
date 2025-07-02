@@ -1,5 +1,11 @@
 # 🐾 JobHound AI
 
+[![Streamlit App](https://img.shields.io/badge/Live%20App-Streamlit-brightgreen?logo=streamlit)](https://jobhound-ai.streamlit.app/)
+[![Python Version](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![OpenAI Powered](https://img.shields.io/badge/Built%20with-OpenAI-ff69b4?logo=openai)](https://openai.com/)
+[![GitHub Repo stars](https://img.shields.io/github/stars/YOUR_USERNAME/jobhound-ai?style=social)](https://github.com/YOUR_USERNAME/jobhound-ai)
+
 A Streamlit-powered job application tracker with built-in AI features like resume-to-job matching and cover letter generation using OpenAI's GPT-4.
 
 🔗 **Live App**: [https://jobhound-ai.streamlit.app](https://jobhound-ai.streamlit.app)
