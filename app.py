@@ -3,26 +3,24 @@ import pandas as pd
 import datetime
 import os
 import openai
-from dotenv import load_dotenv
 
-# Load API Key
-load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")
+# ✅ Load OpenAI API key from Streamlit secrets
+openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 # Data file
 DATA_FILE = "job_applications.csv"
 
-# Init CSV
+# Initialize CSV
 if not os.path.exists(DATA_FILE):
     pd.DataFrame(columns=[
         "Job Title", "Company", "Application Date", "Platform",
         "Status", "Follow-Up Date", "Notes"
     ]).to_csv(DATA_FILE, index=False)
 
-# Load Data
+# Load data
 df = pd.read_csv(DATA_FILE)
 
-# Sidebar
+# Sidebar navigation
 st.sidebar.title("JobHound AI 🐾")
 menu = st.sidebar.radio("Navigate", ["Dashboard", "Add Job", "AI Resume Match", "AI Cover Letter", "View Jobs"])
 
@@ -34,7 +32,7 @@ if menu == "Dashboard":
     st.metric("Offers", len(df[df["Status"] == "Offer"]))
     st.bar_chart(df["Status"].value_counts())
 
-# Add Job
+# Add Job Form
 elif menu == "Add Job":
     st.title("➕ Add a New Application")
     with st.form("job_form"):
@@ -58,7 +56,6 @@ elif menu == "Add Job":
 # AI Resume Matching
 elif menu == "AI Resume Match":
     st.title("🤖 AI Resume Match Score")
-
     with st.form("match_form"):
         resume = st.text_area("Paste Your Resume")
         job_desc = st.text_area("Paste Job Description")
@@ -86,7 +83,6 @@ Return only a score and a short explanation.
 # AI Cover Letter Generator
 elif menu == "AI Cover Letter":
     st.title("✍️ AI-Powered Cover Letter Generator")
-
     with st.form("cover_form"):
         resume = st.text_area("Paste Your Resume")
         job_desc = st.text_area("Paste Job Description")
@@ -110,7 +106,7 @@ Job Description:
                 st.success("Generated Cover Letter:")
                 st.write(response.choices[0].message.content.strip())
 
-# View Jobs
+# View Jobs Table
 elif menu == "View Jobs":
     st.title("📁 All Job Applications")
     st.dataframe(df, use_container_width=True)
