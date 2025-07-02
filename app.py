@@ -4,6 +4,30 @@ import datetime
 import os
 import openai
 
+import streamlit_authenticator as stauth
+import yaml
+
+# Load config.yaml
+with open('config.yaml') as file:
+    config = yaml.safe_load(file)
+
+authenticator = stauth.Authenticate(
+    config['credentials'],
+    config['cookie']['name'],
+    config['cookie']['key'],
+    config['cookie']['expiry_days']
+)
+
+name, auth_status, username = authenticator.login('Login', 'main')
+
+if auth_status == False:
+    st.error('Username/password is incorrect')
+elif auth_status == None:
+    st.warning('Please enter your username and password')
+elif auth_status:
+    st.sidebar.success(f'Welcome {name} 👋')
+
+
 # ✅ Load OpenAI API key from Streamlit secrets
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 

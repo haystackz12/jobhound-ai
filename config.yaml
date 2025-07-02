@@ -1,0 +1,10 @@
+credentials:
+  usernames:
+    user1:
+      name: John Doe
+      email: john@example.com
+      password: '$2b$12$KIXvLZ9gUBrjznNDi1JVA.ZxZHmpTg9mTQ3WeyY9LlgZAVDcO0EeK'  # 'test123'
+cookie:
+  name: jobhound_auth
+  key: super_secret_key
+  expiry_days: 30
